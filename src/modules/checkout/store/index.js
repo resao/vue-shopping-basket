@@ -27,11 +27,23 @@ export default {
     }
   },
   actions: {
-    async [ADD_ITEM] ({ commit, dispatch }, payload) {
+    async [ADD_ITEM] ({ state, commit, dispatch }, payload) {
       if (!payload) throw Error('ADD_ITEM: EXPECTED PAYLOAD')
 
-      commit(ADD_ITEM, payload)
-      dispatch(SET_SESSION)
+      // Find out if item is already in basket
+      const itemsAlreadyAdded = state.basket.items.filter(item => item.id === payload.id)
+      const existingItem = itemsAlreadyAdded.length && itemsAlreadyAdded[0]
+
+      // If item is already in basket, then update the item in basket
+      if (existingItem) {
+        dispatch(UPDATE_ITEM, {
+          id: payload.id,
+          quantity: existingItem.quantity + payload.quantity
+        })
+      } else { // Otherwise add new item to basket
+        commit(ADD_ITEM, payload)
+        dispatch(SET_SESSION)
+      }
     },
     async [REMOVE_ITEM] ({ commit, dispatch }, id) {
       if (!id) throw Error('REMOVE_ITEM: EXPECTED ID')
@@ -65,14 +77,16 @@ export default {
   },
   mutations: {
     [ADD_ITEM] (state, item) {
-      console.log(`adding item ${item}`)
+      state.basket.items.push({
+        id: item.id,
+        name: item.name,
+        quantity: item.quantity
+      })
     },
     [REMOVE_ITEM] (state, id) {
-      console.log(`removing item ${id}`)
       state.basket.items = state.basket.items.filter(item => item.id !== id)
     },
     [UPDATE_ITEM] (state, payload) {
-      console.log(`updating item ${payload.id} ${payload.quantity}`)
       state.basket.items.map(item => {
         if (item.id === payload.id) {
           item.quantity = payload.quantity
@@ -80,7 +94,6 @@ export default {
       })
     },
     [SET_BASKET] (state, session) {
-      console.log(`setting basket ${JSON.stringify(session.basket)}`)
       state.basket = session.basket
     }
   }

@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Basket from '../components/basket/'
-import BasketView from '../components/basket/view/'
+import Basket from '@/modules/checkout/components/basket/'
+import BasketView from '@/modules/checkout/components/basket/view/'
 
 export default {
   name: 'Checkout',
