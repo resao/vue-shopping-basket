@@ -1,4 +1,6 @@
 export const ADD_ITEM = 'addItem'
 export const REMOVE_ITEM = 'removeItem'
-export const UPDATE_SESSION = 'updateSession'
+export const UPDATE_ITEM = 'updateItem'
+export const SET_BASKET = 'setBasket'
 export const RETRIEVE_SESSION = 'retrieveSession'
+export const SET_SESSION = 'setSession'

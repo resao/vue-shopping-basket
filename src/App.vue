@@ -8,6 +8,22 @@
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  name: 'App',
+  methods: {
+    ...mapActions('checkout', [
+      'retrieveSession'
+    ])
+  },
+  mounted () {
+    this.retrieveSession()
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

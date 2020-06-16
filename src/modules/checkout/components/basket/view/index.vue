@@ -1,13 +1,13 @@
-<template functional>
+<template>
   <div class="basket">
     <h2>Basket</h2>
-    <div class="basket__item" v-for="item in props.items" :key="item.id">
+    <div class="basket__item" v-for="item in items" :key="item.id">
       <span>{{ item.name }}</span>
       <div class="basket__controls">
         <div class="form-input">
-          <input type="number" name="basket-quantity" />
+          <input type="number" :value="item.quantity" @input="(e) => updateItem({id: item.id, quantity: e.target.value})"/>
         </div>
-        <button @click="props.removeItem">Remove</button>
+        <button @click="() => removeItem(item.id)">Remove</button>
       </div>
     </div>
   </div>
@@ -22,6 +22,10 @@ export default {
       required: true
     },
     removeItem: {
+      type: Function,
+      required: true
+    },
+    updateItem: {
       type: Function,
       required: true
     }

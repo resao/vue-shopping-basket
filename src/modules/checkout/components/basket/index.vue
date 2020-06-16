@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :items="items" :remove-item="removeItem"/>
+    <slot :items="items" :remove-item="removeItem" :update-item="updateItem"/>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     ...mapActions('checkout', [
-      'removeItem'
+      'removeItem',
+      'updateItem'
     ])
   }
 }
