@@ -1,9 +1,3 @@
-<template>
-  <div>
-    <slot :items="items" :add-item="addItem" :increase-quantity="increaseQuantity" :decrease-quantity="decreaseQuantity"/>
-  </div>
-</template>
-
 <script>
 import { mapActions, mapState } from 'vuex'
 
@@ -22,6 +16,14 @@ export default {
     ...mapActions('checkout', [
       'addItem'
     ])
+  },
+  render () {
+    return this.$scopedSlots.default({
+      items: this.items,
+      addItem: this.addItem,
+      increaseQuantity: this.increaseQuantity,
+      decreaseQuantity: this.decreaseQuantity
+    })
   }
 }
 </script>

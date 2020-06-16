@@ -1,9 +1,3 @@
-<template>
-  <div>
-    <slot :items="items" :remove-item="removeItem" :update-item="updateItem"/>
-  </div>
-</template>
-
 <script>
 import { mapActions, mapState } from 'vuex'
 
@@ -19,6 +13,13 @@ export default {
       'removeItem',
       'updateItem'
     ])
+  },
+  render () {
+    return this.$scopedSlots.default({
+      items: this.items,
+      removeItem: this.removeItem,
+      updateItem: this.updateItem
+    })
   }
 }
 </script>
