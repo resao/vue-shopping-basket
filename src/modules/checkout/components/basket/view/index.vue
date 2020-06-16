@@ -14,26 +14,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'BasketView',
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    removeItem: {
-      type: Function,
-      required: true
-    },
-    updateItem: {
-      type: Function,
-      required: true
-    }
-  }
-}
-</script>
-
 <style lang="scss">
 .basket {
   max-width: 700px;

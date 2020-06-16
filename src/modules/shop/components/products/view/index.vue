@@ -17,30 +17,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ProductsView',
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    addItem: {
-      type: Function,
-      required: true
-    },
-    increaseQuantity: {
-      type: Function,
-      required: true
-    },
-    decreaseQuantity: {
-      type: Function,
-      required: true
-    }
-  }
-}
-</script>
-
 <style lang="scss">
 .products {
   max-width: 700px;
