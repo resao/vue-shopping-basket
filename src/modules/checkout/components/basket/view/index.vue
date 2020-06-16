@@ -1,6 +1,7 @@
 <template functional>
   <div class="basket">
-    <h2>Basket</h2>
+    <h2 v-if="props.items && props.items.length">Basket</h2>
+    <h2 v-else>Basket is empty</h2>
     <div class="basket__item" v-for="item in props.items" :key="item.id">
       <span>{{ item.name }}</span>
       <div class="basket__controls">

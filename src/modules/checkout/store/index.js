@@ -11,18 +11,7 @@ export default {
   namespaced: true,
   state: {
     basket: {
-      items: [
-        {
-          id: '123123',
-          name: 'My item 1',
-          quantity: 4
-        },
-        {
-          id: '12312323',
-          name: 'My item 2',
-          quantity: 2
-        }
-      ],
+      items: [],
       promo: null
     }
   },
